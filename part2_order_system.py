@@ -133,3 +133,69 @@ print(f"GST (5%): ₹{round(gst,2)}")
 total = subtotal + gst
 
 print(f"Total Amount: ₹{round(total,2)}")
+
+# Task 3: Inventory Tracker
+
+print("\n===== INVENTORY TRACKER =====")
+
+inventory = {}
+
+for item, details in menu.items():
+    inventory[item] = {
+        "stock": 10,
+        "price": details["price"]
+    }
+import copy
+
+inventory_copy = copy.deepcopy(inventory)
+
+inventory_copy["Paneer Tikka"]["stock"] -= 2
+inventory_copy["Gulab Jamun"]["stock"] -= 1
+
+print("\nOriginal Inventory:")
+print(inventory)
+
+print("\nUpdated Inventory:")
+print(inventory_copy)
+
+# Task 4: Daily Sales Log
+
+print("\n===== DAILY SALES =====")
+
+sales = [
+    {"item": "Paneer Tikka", "quantity": 2},
+    {"item": "Gulab Jamun", "quantity": 3},
+    {"item": "Paneer Tikka", "quantity": 1},
+    {"item": "Dal Tadka", "quantity": 2},
+    {"item": "Gulab Jamun", "quantity": 1},
+]
+
+total_orders = len(sales)
+
+print("Total Orders:", total_orders)
+
+total_revenue = 0
+
+for order in sales:
+    item = order["item"]
+    qty = order["quantity"]
+    price = menu[item]["price"]
+    
+    total_revenue += qty * price
+
+print("Total Revenue: ₹", total_revenue)
+
+item_count = {}
+
+for order in sales:
+    item = order["item"]
+    
+    if item in item_count:
+        item_count[item] += order["quantity"]
+    else:
+        item_count[item] = order["quantity"]
+
+# find max
+most_sold = max(item_count, key=item_count.get)
+
+print("Most Sold Item:", most_sold)
